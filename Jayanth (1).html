@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>CYBERSPACE // PROFILE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+
+:root{
+  --bg:#050816;
+  --surface:#0b1023;
+  --card:#11182f;
+  --border:#1e2a4f;
+
+  --cyan:#00f0ff;
+  --pink:#ff00ea;
+  --purple:#7a5cff;
+
+  --text:#d7faff;
+  --muted:#7c8bb3;
+
+  --glow-cyan:0 0 20px rgba(0,240,255,.45);
+  --glow-pink:0 0 20px rgba(255,0,234,.35);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+    radial-gradient(circle at top left, rgba(0,240,255,.08), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,0,234,.08), transparent 30%),
+    var(--bg);
+
+  color:var(--text);
+  font-family:'Rajdhani', sans-serif;
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
+}
+
+/* animated grid */
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  mask-image:linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+
+  pointer-events:none;
+
+  animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+  from{
+    transform:translateY(0px);
+  }
+  to{
+    transform:translateY(40px);
+  }
+}
+
+/* glow orb */
+
+.orb{
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,240,255,.12), transparent 70%);
+  top:-100px;
+  right:-100px;
+  pointer-events:none;
+  filter:blur(10px);
+}
+
+/* hero */
+
+.hero{
+  position:relative;
+  padding:120px 30px 90px;
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(circle at center,
+    rgba(0,240,255,.16),
+    rgba(255,0,234,.08),
+    transparent 60%);
+
+  filter:blur(55px);
+  opacity:.9;
+}
+
+.hero-label{
+  color:var(--cyan);
+  letter-spacing:.4em;
+  font-size:12px;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  text-shadow:var(--glow-cyan);
+}
+
+.hero h1{
+  font-family:'Orbitron', sans-serif;
+  font-size:clamp(56px,10vw,120px);
+  font-weight:800;
+  line-height:1;
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+
+.hero h1 span{
+  color:var(--pink);
+  text-shadow:var(--glow-pink);
+}
+
+.hero-sub{
+  color:var(--muted);
+  font-size:18px;
+  letter-spacing:.2em;
+}
+
+/* container */
+
+.container{
+  width:min(1200px, 92%);
+  margin:auto;
+}
+
+/* section label */
+
+.section-label{
+  margin:70px 0 30px;
+  color:var(--cyan);
+  letter-spacing:.3em;
+  font-size:12px;
+  text-transform:uppercase;
+
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.section-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(to right, var(--cyan), transparent);
+}
+
+/* cards */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:28px;
+  align-items:stretch;
+}
+
+.card{
+  background:rgba(17,24,47,.78);
+  border:1px solid rgba(0,240,255,.15);
+  border-radius:24px;
+  padding:38px;
+  backdrop-filter:blur(14px);
+
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+
+  min-height:320px;
+
+  transition:
+    border-color .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+
+  background:linear-gradient(
+    135deg,
+    rgba(0,240,255,.08),
+    transparent,
+    rgba(255,0,234,.08)
+  );
+
+  opacity:0;
+  transition:opacity .3s ease;
+}
+
+.card:hover{
+  transform:none !important;
+
+  border-color:rgba(0,240,255,.35);
+
+  box-shadow:
+    0 0 25px rgba(0,240,255,.12),
+    0 0 40px rgba(255,0,234,.06);
+
+  background:rgba(17,24,47,.82);
+}
+
+.card:hover::before{
+  opacity:1;
+}
+
+.card-icon{
+  font-size:42px;
+  margin-bottom:24px;
+  display:block;
+}
+
+.card h3{
+  font-family:'Orbitron', sans-serif;
+  font-size:24px;
+  margin-bottom:16px;
+  color:var(--cyan);
+  line-height:1.2;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:17px;
+}
+
+/* stats */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+  margin-top:20px;
+}
+
+.stat{
+  background:rgba(17,24,47,.78);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:34px;
+  text-align:center;
+
+  transition:
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.stat:hover{
+  border-color:rgba(255,0,234,.25);
+  background:rgba(17,24,47,.9);
+}
+
+.stat h2{
+  font-size:42px;
+  font-family:'Orbitron', sans-serif;
+  color:var(--pink);
+  margin-bottom:10px;
+}
+
+.stat p{
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  font-size:12px;
+}
+
+/* tags */
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-top:20px;
+}
+
+.tag{
+  padding:12px 20px;
+  border-radius:999px;
+
+  border:1px solid rgba(0,240,255,.18);
+
+  background:rgba(0,240,255,.05);
+
+  color:var(--cyan);
+
+  font-size:13px;
+  font-weight:600;
+
+  letter-spacing:.12em;
+
+  transition:
+    border-color .25s ease,
+    background .25s ease,
+    color .25s ease;
+
+  white-space:nowrap;
+}
+
+.tag:hover{
+  transform:none !important;
+
+  background:rgba(255,0,234,.08);
+
+  border-color:rgba(255,0,234,.35);
+
+  color:#ff7bf4;
+}
+
+/* timeline */
+
+.timeline{
+  margin-top:30px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  overflow:hidden;
+  background:rgba(17,24,47,.65);
+}
+
+.timeline-item{
+  display:grid;
+  grid-template-columns:120px 1fr 220px;
+  align-items:center;
+
+  padding:24px 30px;
+
+  border-bottom:1px solid rgba(255,255,255,.05);
+
+  transition:
+    background .25s ease,
+    border-color .25s ease;
+}
+
+.timeline-item:hover{
+  background:rgba(255,255,255,.025);
+}
+
+.timeline-item:last-child{
+  border-bottom:none;
+}
+
+.time{
+  color:var(--cyan);
+  font-family:'Orbitron', sans-serif;
+  font-size:15px;
+}
+
+.activity{
+  color:var(--text);
+  font-size:18px;
+  font-weight:600;
+}
+
+.type{
+  color:var(--muted);
+  text-align:right;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:13px;
+}
+
+/* footer */
+
+footer{
+  text-align:center;
+  padding:70px 20px 50px;
+
+  color:#6d7da8;
+
+  font-size:12px;
+
+  letter-spacing:.35em;
+
+  text-transform:uppercase;
+
+  border-top:1px solid rgba(255,255,255,.05);
+
+  background:linear-gradient(
+    to top,
+    rgba(0,240,255,.03),
+    transparent
+  );
+}
+
+/* responsive */
+
+@media(max-width:850px){
+
+  .timeline-item{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .type{
+    text-align:left;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .hero{
+    padding:90px 20px 70px;
+  }
+
+  .hero-sub{
+    font-size:14px;
+  }
+
+  .card{
+    min-height:auto;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="orb"></div>
+
+<header class="hero">
+
+  <div class="hero-label">
+    SYSTEM ACTIVE // 2026
+  </div>
+
+  <h1>
+    CYBER <span>SPACE</span>
+  </h1>
+
+  <p class="hero-sub">
+    MACHINES • CODE • SPEED • COSMOS
+  </p>
+<br> <br>
+<H3> I am Jayanth Aras. I have recently passed my 10Th grade and am joining College. I am a adventourous boy and love speed </H3>
+
+</header>
+
+<main class="container">
+
+  <div class="section-label">
+    THINGS I LOVE
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <span class="card-icon">🏍️</span>
+
+      <h3>Machines</h3>
+
+      <p>
+        Engines, torque, turbo noises, midnight riding sessions.
+        Machines aren't just transport — they're personality.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💻</span>
+
+      <h3>Coding</h3>
+
+      <p>
+        Building systems from pure logic.
+        Turning caffeine and chaos into something functional.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🌌</span>
+
+      <h3>Astronomy</h3>
+
+      <p>
+        Looking at galaxies while everyone else scrolls social media.
+        The universe is the ultimate flex honestly.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="section-label">
+    PROFILE STATS
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <h2>4AM</h2>
+      <p>Wake Up</p>
+    </div>
+
+    <div class="stat">
+      <h2>∞</h2>
+      <p>Ideas</p>
+    </div>
+
+    <div class="stat">
+      <h2>24/7</h2>
+      <p>Building</p>
+    </div>
+
+  </div>
+
+  <div class="section-label">
+    CORE INTERESTS
+  </div>
+
+  <div class="tags">
+    <div class="tag">TECH</div>
+    <div class="tag">CARS</div>
+    <div class="tag">BIKES</div>
+    <div class="tag">CODE</div>
+    <div class="tag">ASTRONOMY</div>
+    <div class="tag">SPEED</div>
+    <div class="tag">READING</div>
+    <div class="tag">MORE SPEED</div>
+    <div class="tag">TURBO</div>
+    <div class="tag">AND AGAIN EVEN MORE SPEED</div>
+  </div>
+
+  <div class="section-label">
+    DAILY LOOP
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="time">08:00</div>
+      <div class="activity">Freshen up</div>
+      <div class="type">sleep mode off</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">08:30</div>
+      <div class="activity">Gaming</div>
+      <div class="type">Locked in racing</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">10:30</div>
+      <div class="activity">Read Novels</div>
+      <div class="type">dreaming of another dimension</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">14:00</div>
+      <div class="activity">Binging series</div>
+      <div class="type">Invested</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">17:30</div>
+      <div class="activity">Biking</div>
+      <div class="type">Speed becomes your friend</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">20:30</div>
+      <div class="activity">Resting at home</div>
+      <div class="type">Exhausted</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">21:30</div>
+      <div class="activity">Watching series</div>
+      <div class="type">Invested</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">23:00</div>
+      <div class="activity">Reading Novels</div>
+      <div class="type">Dreaming</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">24:00</div>
+      <div class="activity">Sleeping</div>
+      <div class="type">brain is OFF</div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  NEON DREAMS // BUILT DIFFERENT // 2026
+</footer>
+
+</body>
+</html>
